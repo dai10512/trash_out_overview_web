@@ -41,7 +41,6 @@ class Home extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Text('テスト'),
         Image.asset('images/logo.png'),
         ClipRRect(
           borderRadius: const BorderRadius.all(Radius.circular(30)), // 調節
@@ -59,7 +58,7 @@ class Home extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'ごみ収集日管理アプリ,test',
+                'ごみ収集日管理アプリ',
                 style: (MediaQuery.of(context).size.width > 600) ? Theme.of(context).textTheme.titleMedium : Theme.of(context).textTheme.titleSmall,
               ),
               Text(
