@@ -10,6 +10,9 @@ https://trash-out-overview-web.firebaseapp.com/#/
 
 A new Flutter project.
 
+![design](https://user-images.githubusercontent.com/38497198/173172292-83ed3828-4350-47e3-b586-c677a9fa7d2e.png)
+
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
