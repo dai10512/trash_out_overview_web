@@ -41,6 +41,7 @@ class Home extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
+        Image.asset('images/logo.png'),
         ClipRRect(
           borderRadius: const BorderRadius.all(Radius.circular(30)), // 調節
           child: Image.asset(
