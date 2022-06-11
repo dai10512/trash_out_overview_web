@@ -39,15 +39,17 @@ class Home extends StatelessWidget {
 
   Widget buildOverview(context) {
     return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        ClipRRect(
-          borderRadius: const BorderRadius.all(Radius.circular(30)), // 調節
-
-          child: Image.asset(
-            'images/logo.png',
-            width: 160,
-            height: 160,
+        Center(
+          child: ClipRRect(
+            borderRadius: const BorderRadius.all(Radius.circular(30)), // 調節
+            child: Image.asset(
+              'images/logo.png',
+              width: (MediaQuery.of(context).size.width > 600) ? 140 : 120,
+              height: (MediaQuery.of(context).size.width > 600) ? 140 : 120,
+              // fit: BoxFit.contain,
+            ),
           ),
         ),
         const SizedBox(width: 20),
@@ -58,11 +60,11 @@ class Home extends StatelessWidget {
             children: [
               Text(
                 'ごみ収集日管理アプリ',
-                style: (MediaQuery.of(context).size.width > 600) ? Theme.of(context).textTheme.titleLarge : Theme.of(context).textTheme.titleSmall,
+                style: (MediaQuery.of(context).size.width > 600) ? Theme.of(context).textTheme.titleMedium : Theme.of(context).textTheme.titleSmall,
               ),
               Text(
                 'TrashOut',
-                style: (MediaQuery.of(context).size.width > 600) ? Theme.of(context).textTheme.displayLarge : Theme.of(context).textTheme.displayMedium,
+                style: (MediaQuery.of(context).size.width > 600) ? Theme.of(context).textTheme.displayLarge : Theme.of(context).textTheme.displaySmall,
               ),
               const Divider(),
               const Text('「第2・第4水曜日」といった複雑なスケジューリングで、当日及び前日に該当するゴミの種類を通知で案内することができます'),
@@ -125,7 +127,7 @@ class Home extends StatelessWidget {
         height: 60,
         width: double.infinity,
         child: Center(
-          child: Text('問い合わせフォーム（google Form）に移動する'),
+          child: Text('問い合わせフォームに移動する'),
         ),
       ),
     );
