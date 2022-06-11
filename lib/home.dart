@@ -45,7 +45,7 @@ class Home extends StatelessWidget {
         ClipRRect(
           borderRadius: const BorderRadius.all(Radius.circular(30)), // 調節
           child: Image.asset(
-            'images/logo.png',
+            'assets/images/logo.png',
             width: (MediaQuery.of(context).size.width > 600) ? 140 : 120,
             height: (MediaQuery.of(context).size.width > 600) ? 140 : 120,
             // fit: BoxFit.contain,
