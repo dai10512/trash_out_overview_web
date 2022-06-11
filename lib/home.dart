@@ -59,7 +59,7 @@ class Home extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'ごみ収集日管理アプリ',
+                'ごみ収集日管理アプリ,test',
                 style: (MediaQuery.of(context).size.width > 600) ? Theme.of(context).textTheme.titleMedium : Theme.of(context).textTheme.titleSmall,
               ),
               Text(
@@ -124,7 +124,7 @@ class Home extends StatelessWidget {
         }
       },
       child: const SizedBox(
-        height: 60,
+        height: 50,
         width: double.infinity,
         child: Center(
           child: Text('問い合わせフォームに移動する'),
