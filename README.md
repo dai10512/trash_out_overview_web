@@ -1,3 +1,11 @@
+このページは、ゴミ収集日管理アプリTrashOutのプライバシーポリシー用ページのソースコードになります。
+
+下記からページにアクセスできます。
+
+https://trash-out-overview-web.firebaseapp.com/#/
+
+
+
 # trash_out_overview_web
 
 A new Flutter project.
