@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:trash_out_overview_web/privacyPolicy%20.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -56,16 +55,16 @@ class Home extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
+              SelectableText(
                 'ごみ収集日管理アプリ',
                 style: (MediaQuery.of(context).size.width > 600) ? Theme.of(context).textTheme.titleMedium : Theme.of(context).textTheme.titleSmall,
               ),
-              Text(
+              SelectableText(
                 'TrashOut',
                 style: (MediaQuery.of(context).size.width > 600) ? Theme.of(context).textTheme.displayLarge : Theme.of(context).textTheme.displaySmall,
               ),
               const Divider(),
-              const Text('「第2・第4水曜日」といった複雑なスケジューリングで、当日及び前日に該当するゴミの種類を通知で案内することができます'),
+              const SelectableText('「第2・第4水曜日」といった複雑なスケジューリングで、当日及び前日に該当するゴミの種類を通知で案内することができます'),
             ],
           ),
         )
@@ -76,7 +75,7 @@ class Home extends StatelessWidget {
   Widget buildFirstMessage(context) {
     return Column(
       children: [
-        Text(
+        SelectableText(
           firstMessage,
           style: Theme.of(context).textTheme.bodyLarge,
         ),
@@ -125,7 +124,7 @@ class Home extends StatelessWidget {
         height: 50,
         width: double.infinity,
         child: Center(
-          child: Text('問い合わせフォームに移動する'),
+          child: SelectableText('お問い合わせフォームに移動する'),
         ),
       ),
     );
@@ -140,14 +139,14 @@ class Home extends StatelessWidget {
   }
 
   Widget buildTitle(context, title) {
-    return Text(
+    return SelectableText(
       title,
       style: (MediaQuery.of(context).size.width > 600) ? Theme.of(context).textTheme.titleLarge : Theme.of(context).textTheme.titleMedium,
     );
   }
 
   Widget buildContent(context, content) {
-    return Text(
+    return SelectableText(
       content,
       style: Theme.of(context).textTheme.bodyLarge,
     );
