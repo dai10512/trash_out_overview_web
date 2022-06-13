@@ -56,7 +56,7 @@ class Home extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SelectableText(
-                'ごみ収集日管理アプリ',
+                '収集ゴミ通知アプリ',
                 style: (MediaQuery.of(context).size.width > 600) ? Theme.of(context).textTheme.titleMedium : Theme.of(context).textTheme.titleSmall,
               ),
               SelectableText(
@@ -64,7 +64,7 @@ class Home extends StatelessWidget {
                 style: (MediaQuery.of(context).size.width > 600) ? Theme.of(context).textTheme.displayLarge : Theme.of(context).textTheme.displaySmall,
               ),
               const Divider(),
-              const SelectableText('「第2・第4水曜日」といった複雑なスケジューリングで、当日及び前日に該当するゴミの種類を通知で案内することができます'),
+              const SelectableText('「第2・第4水曜日」といった複雑なスケジューリングで、当日及び前日に、収集ゴミを通知することができます'),
             ],
           ),
         )
