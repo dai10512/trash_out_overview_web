@@ -1,6 +1,10 @@
+import 'dart:io';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:trash_out_overview_web/privacyPolicy%20.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
@@ -8,7 +12,7 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const contactUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSfK3Atlu_Gljy2K4VuSRbNQNXN8oHR3AdywsQjqRYFs8rKOjg/viewform';
-
+    final bool isLargeMonitor = (MediaQuery.of(context).size.width > 900);
     return Scaffold(
       body: SingleChildScrollView(
         child: Center(
@@ -21,7 +25,14 @@ class Home extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  buildOverview(context),
+                  buildOverview(context, isLargeMonitor),
+                  Visibility(
+                    visible: (!isLargeMonitor),
+                    child: spacer(),
+                  ),
+                  buildStoreBannerMobile(context, isLargeMonitor),
+                  spacer(),
+                  Text('プライバシーポリシー', style: Theme.of(context).textTheme.titleLarge),
                   spacer(),
                   buildFirstMessage(context),
                   buildPrivacyPolicy(),
@@ -36,7 +47,86 @@ class Home extends StatelessWidget {
     );
   }
 
-  Widget buildOverview(context) {
+  Widget buildStoreBannerMobile(context, isLargeMonitor) {
+    return Visibility(
+      visible: (!isLargeMonitor),
+      child: Center(
+        // width: 800,
+        child: Wrap(
+          // mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            MouseRegion(
+              cursor: SystemMouseCursors.click,
+              child: GestureDetector(
+                child: SvgPicture.asset(
+                  'assets/images/black.svg',
+                  semanticsLabel: 'ios',
+                  height: 55,
+                ),
+                onTap: () {},
+              ),
+            ),
+            // Expanded(child: Container()),
+            SizedBox(width: (MediaQuery.of(context).size.width > 600) ? 40 : 20),
+            MouseRegion(
+              cursor: SystemMouseCursors.click,
+              child: GestureDetector(
+                child: Image.asset(
+                  'assets/images/google-play-badge.png',
+                  height: 55,
+                ),
+                onTap: () {},
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget buildStoreBannerLargeMonitor(context, isLargeMonitor) {
+    return SizedBox(
+      height: 165,
+      child: Align(
+        alignment: Alignment.bottomRight,
+        child: Visibility(
+          visible: (isLargeMonitor),
+          child: Padding(
+            padding: const EdgeInsets.only(left: 8.0),
+            child: Row(
+              children: [
+                MouseRegion(
+                  cursor: SystemMouseCursors.click,
+                  child: GestureDetector(
+                    child: SvgPicture.asset(
+                      'assets/images/black.svg',
+                      semanticsLabel: 'ios',
+                      height: 45,
+                    ),
+                    onTap: () {},
+                  ),
+                ),
+                // Expanded(child: Container()),
+                const SizedBox(width: 10),
+                MouseRegion(
+                  cursor: SystemMouseCursors.click,
+                  child: GestureDetector(
+                    child: Image.asset(
+                      'assets/images/google-play-badge.png',
+                      height: 45,
+                    ),
+                    onTap: () {},
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget buildOverview(context, isLargeMonitor) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
@@ -56,18 +146,19 @@ class Home extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SelectableText(
-                'ごみ収集日管理アプリ',
-                style: (MediaQuery.of(context).size.width > 600) ? Theme.of(context).textTheme.titleMedium : Theme.of(context).textTheme.titleSmall,
+                '収集ゴミ通知アプリ',
+                style: (MediaQuery.of(context).size.width > 600) ? Theme.of(context).textTheme.titleMedium : Theme.of(context).textTheme.bodyMedium,
               ),
               SelectableText(
                 'TrashOut',
                 style: (MediaQuery.of(context).size.width > 600) ? Theme.of(context).textTheme.displayLarge : Theme.of(context).textTheme.displaySmall,
               ),
               const Divider(),
-              const SelectableText('「第2・第4水曜日」といった複雑なスケジューリングで、当日及び前日に該当するゴミの種類を通知で案内することができます'),
+              const SelectableText('週や曜日、収集ゴミの種類を登録することで、その日の収集ゴミを通知することができます'),
             ],
           ),
-        )
+        ),
+        buildStoreBannerLargeMonitor(context, isLargeMonitor),
       ],
     );
   }
