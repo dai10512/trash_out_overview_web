@@ -29,6 +29,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_web_plugins:
+    sdk: flutter
   pedantic_mono: ^1.19.2
 
   # The following adds the Cupertino Icons font to your application.

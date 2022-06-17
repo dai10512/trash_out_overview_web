@@ -1,14 +1,16 @@
-import 'dart:io';
-
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:trash_out_overview_web/privacyPolicy%20.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
 
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     const contactUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSfK3Atlu_Gljy2K4VuSRbNQNXN8oHR3AdywsQjqRYFs8rKOjg/viewform';
@@ -63,7 +65,9 @@ class Home extends StatelessWidget {
                   semanticsLabel: 'ios',
                   height: 55,
                 ),
-                onTap: () {},
+                onTap: () {
+                  launchURL('https://apple.co/3zMRxsu');
+                },
               ),
             ),
             // Expanded(child: Container()),
@@ -75,7 +79,9 @@ class Home extends StatelessWidget {
                   'assets/images/google-play-badge.png',
                   height: 55,
                 ),
-                onTap: () {},
+                onTap: () {
+                  launchURL('https://play.google.com/store/apps/details?id=com.me.trash_out');
+                },
               ),
             ),
           ],
@@ -103,7 +109,9 @@ class Home extends StatelessWidget {
                       semanticsLabel: 'ios',
                       height: 45,
                     ),
-                    onTap: () {},
+                    onTap: () {
+                      launchURL('https://apple.co/3zMRxsu');
+                    },
                   ),
                 ),
                 // Expanded(child: Container()),
@@ -115,7 +123,10 @@ class Home extends StatelessWidget {
                       'assets/images/google-play-badge.png',
                       height: 45,
                     ),
-                    onTap: () {},
+                    onTap: () {
+                      print('tapped');
+                      launchURL('https://play.google.com/store/apps/details?id=com.me.trash_out');
+                    },
                   ),
                 ),
               ],
@@ -124,6 +135,14 @@ class Home extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void launchURL(url) async {
+    // if (await launchUrl(Uri.parse(url))) {
+    await launchUrl(Uri.parse(url));
+    // } else {
+    //   throw 'Could not launch $url';
+    // }
   }
 
   Widget buildOverview(context, isLargeMonitor) {
