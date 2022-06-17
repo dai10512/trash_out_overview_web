@@ -54,7 +54,8 @@ class _HomeState extends State<Home> {
       visible: (!isLargeMonitor),
       child: Center(
         // width: 800,
-        child: Wrap(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           // mainAxisAlignment: MainAxisAlignment.end,
           children: [
             MouseRegion(
@@ -63,7 +64,7 @@ class _HomeState extends State<Home> {
                 child: SvgPicture.asset(
                   'assets/images/black.svg',
                   semanticsLabel: 'ios',
-                  height: 55,
+                  height: 40,
                 ),
                 onTap: () {
                   launchURL('https://apple.co/3zMRxsu');
@@ -71,13 +72,13 @@ class _HomeState extends State<Home> {
               ),
             ),
             // Expanded(child: Container()),
-            SizedBox(width: (MediaQuery.of(context).size.width > 600) ? 40 : 20),
+            SizedBox(width: (MediaQuery.of(context).size.width > 600) ? 40 : 10),
             MouseRegion(
               cursor: SystemMouseCursors.click,
               child: GestureDetector(
                 child: Image.asset(
                   'assets/images/google-play-badge.png',
-                  height: 55,
+                  height: 40,
                 ),
                 onTap: () {
                   launchURL('https://play.google.com/store/apps/details?id=com.me.trash_out');
