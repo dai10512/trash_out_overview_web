@@ -1,8 +1,16 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <title>収集ゴミ通知アプリ「TrashOut」</title>
+    <meta charset="UTF-8" />
+    <meta name="keyword" content="ゴミ,通知,自動,週,曜日,ゴミ収集,Flutter" />
+    <meta
+      name="description"
+      content="収集ゴミ通知アプリ「TrashOut」は、「第1・第3水曜日」と言った複雑なスケジュールにも対応し、日々の収集ゴミを通知してくれます。"
+    />
+    <meta name="author" content="Daisuke Osanai" />
     <!--
-    If you are serving your web app in a path other than the root, change the
+      If you are serving your web app in a path other than the root, change the
     href value below to reflect the base path you are serving from.
 
     The path provided below has to start and end with a slash "/" in order for
@@ -14,6 +22,7 @@
     This is a placeholder for base href that will be replaced by the value of
     the `--base-href` argument provided to `flutter build`.
   -->
+
     <!-- Twitter Card AND OGP -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@TrashOut" />
@@ -24,29 +33,101 @@
       content="週・曜日・ゴミの種類を登録することで、日々の収集ゴミについてPush通知します。"
     />
     <meta property="og:image" content="web/icons/logo.png" />
-
     <base href="$FLUTTER_BASE_HREF" />
 
-    <meta charset="UTF-8" />
     <meta content="IE=Edge" http-equiv="X-UA-Compatible" />
-    <meta
-      name="description"
-      content="収集ゴミ通知アプリ「TrashOut」のランディングページ。アプリの詳細やプライバシーポリシーなどはこちらからご覧ください"
-    />
 
-    <!-- iOS meta tags & icons -->
+    <!-- iOS meta tags-->
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
     <meta
       name="apple-mobile-web-app-title"
       content="収集ゴミ通知アプリ「TrashOut」のページ"
     />
-    <link rel="apple-touch-icon" href="assets/images/logo.png" />
 
     <!-- Favicon -->
-    <!-- <link rel="icon" type="image/png" href="assets/images/logo.png" /> -->
 
-    <title>trash_out_overview_web</title>
+    <link
+      rel="apple-touch-icon"
+      sizes="57x57"
+      href="icons/apple-icon-57x57.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="60x60"
+      href="icons/apple-icon-60x60.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="72x72"
+      href="icons/apple-icon-72x72.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="76x76"
+      href="icons/apple-icon-76x76.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="114x114"
+      href="icons/apple-icon-114x114.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="120x120"
+      href="icons/apple-icon-120x120.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="144x144"
+      href="icons/apple-icon-144x144.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="152x152"
+      href="icons/apple-icon-152x152.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="icons/apple-icon-180x180.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="icons/android-icon-192x192.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="icons/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="96x96"
+      href="icons/favicon-96x96.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="icons/favicon-16x16.png"
+    />
+
+    <meta name="msapplication-TileColor" content="#6200EA" />
+    <meta name="msapplication-TileImage" content="icons/ms-icon-144x144.png" />
+
+    <!-- Main Favicon -->
+    <link rel="icon" type="image/pg" href="favicon/png"/>
+
+    <!-- ALTERNATIVE <link rel="icon" type="image/x-icon" href="favicon.ico" /> -->
+
+    <link rel="manifest" href="icons/manifest.json" />
+
+    <link rel="apple-touch-icon" href="assets/images/logo.png" />
     <link rel="manifest" href="manifest.json" />
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
