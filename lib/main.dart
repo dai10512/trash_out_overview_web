@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:trash_out_overview_web/home.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trash_out_overview_web/LandingPage.dart';
 import 'firebase_options.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 
@@ -11,7 +12,7 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   setUrlStrategy(PathUrlStrategy());
-  runApp(const MyApp());
+  runApp(ProviderScope(child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -20,14 +21,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'TrashOut',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         fontFamily: 'NotoSansJP',
+        
         useMaterial3: true,
         primarySwatch: Colors.blue,
       ),
-      home: const Home(),
+      home: const LandingPage(),
     );
   }
 }

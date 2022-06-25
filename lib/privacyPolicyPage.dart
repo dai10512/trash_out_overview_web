@@ -3,19 +3,13 @@ import 'package:trash_out_overview_web/privacyPolicy%20.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
-
-  @override
-  State<Home> createState() => _HomeState();
-}
-
-class _HomeState extends State<Home> {
+class PrivacyPolicyPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const contactUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSfK3Atlu_Gljy2K4VuSRbNQNXN8oHR3AdywsQjqRYFs8rKOjg/viewform';
     final bool isLargeMonitor = (MediaQuery.of(context).size.width > 900);
     return Scaffold(
+      appBar: AppBar(),
       body: SingleChildScrollView(
         child: Center(
           child: Padding(
