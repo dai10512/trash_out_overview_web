@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:trash_out_overview_web/privacyPolicy%20.dart';
+import 'package:trash_out_overview_web/util.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class PrivacyPolicyPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    const contactUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSfK3Atlu_Gljy2K4VuSRbNQNXN8oHR3AdywsQjqRYFs8rKOjg/viewform';
     final bool isLargeMonitor = (MediaQuery.of(context).size.width > 900);
     return Scaffold(
       appBar: AppBar(),
@@ -105,7 +105,7 @@ class PrivacyPolicyPage extends StatelessWidget {
                       height: 45,
                     ),
                     onTap: () {
-                      launchURL('https://apple.co/3zMRxsu');
+                      launchURL(iOSInstallURL);
                     },
                   ),
                 ),
@@ -120,7 +120,7 @@ class PrivacyPolicyPage extends StatelessWidget {
                     ),
                     onTap: () {
                       print('tapped');
-                      launchURL('https://play.google.com/store/apps/details?id=com.me.trash_out');
+                      launchURL(androidInstallURL);
                     },
                   ),
                 ),

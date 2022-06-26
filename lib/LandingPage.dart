@@ -1,10 +1,14 @@
 import 'dart:html';
+import 'dart:isolate';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:trash_out_overview_web/privacyPolicyPage.dart';
+import 'package:trash_out_overview_web/util.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+void navigationPrivacyPolicy(context) => Navigator.push(context, MaterialPageRoute(builder: (context) => PrivacyPolicyPage()));
 
 class LandingPage extends ConsumerWidget {
   const LandingPage({Key? key}) : super(key: key);
@@ -13,9 +17,7 @@ class LandingPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     Size screenSize = MediaQuery.of(context).size;
     double minMonitorWidth = 900;
-    // double minMobileWidth = 600;
     bool isMonitor = (screenSize.width > minMonitorWidth);
-    // bool isMobile() => (screenSize.width > minMobileWidth);
 
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -23,17 +25,13 @@ class LandingPage extends ConsumerWidget {
         child: Column(
           children: [
             topSection(context, screenSize, isMonitor),
-            SizedBox(height: 50),
+            const SizedBox(height: 50),
             featureSection(context, isMonitor, minMonitorWidth),
-            SizedBox(height: 50),
-            TextButton(
-              onPressed: () => (Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      // （2） 実際に表示するページ(ウィジェット)を指定する
-                      builder: (context) => PrivacyPolicyPage()))),
-              child: Text('プライバシーポリシー'),
-            ),
+            const SizedBox(height: 50),
+            // othersSection(context, isMonitor),
+            installSection(context, isMonitor),
+            const SizedBox(height: 50),
+            bottomSection(context, isMonitor),
           ],
         ),
       ),
@@ -60,7 +58,7 @@ class LandingPage extends ConsumerWidget {
     );
   }
 
-  void launchURL(url) async {
+  Future<void> launchURL(url) async {
     // if (await launchUrl(Uri.parse(url))) {
     await launchUrl(Uri.parse(url));
     // } else {
@@ -78,18 +76,16 @@ class LandingPage extends ConsumerWidget {
           children: [
             Text('収集ゴミ通知アプリ', style: Theme.of(context).textTheme.displaySmall),
             Text('TrashOut', style: Theme.of(context).textTheme.displayLarge!.copyWith(fontSize: 90)),
-            SizedBox(height: 20),
-            Text('TrashOutなら、週や曜日、ゴミの種類を登録することで \n日々の収集ゴミを通知してくれます'),
-            SizedBox(height: 40),
+            const SizedBox(height: 20),
+            const Text('週や曜日、ゴミの種類を登録することで \n日々の収集ゴミを通知してくれます'),
+            const SizedBox(height: 40),
             installBadge(),
           ],
         ),
         SizedBox(width: (isMonitor) ? 100 : 0),
         Image.asset(
           'assets/images/design-1.png',
-          // fit: BoxFit.cover,
           height: (isMonitor) ? screenSize.height * 0.65 : screenSize.height * 0.9,
-          // width: screenSize.width,
         ),
       ],
     );
@@ -99,26 +95,22 @@ class LandingPage extends ConsumerWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Container(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text('収集ゴミ通知アプリ', style: Theme.of(context).textTheme.displaySmall!.copyWith(fontSize: 20)),
-              Text('TrashOut', style: Theme.of(context).textTheme.displayLarge!.copyWith(fontSize: 75)),
-              SizedBox(height: 20),
-              // Text(' \naaaaaaaaaaaaaaaaaaaaaaaa'),
-              SizedBox(height: 30),
-              installBadge(),
-            ],
-          ),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text('収集ゴミ通知アプリ', style: Theme.of(context).textTheme.displaySmall!.copyWith(fontSize: 20)),
+            Text('TrashOut', style: Theme.of(context).textTheme.displayLarge!.copyWith(fontSize: 75)),
+            const SizedBox(height: 20),
+            Text('週や曜日、ゴミの種類を登録することで\n日々の収集ゴミを通知してくれます'),
+            const SizedBox(height: 30),
+            installBadge(),
+          ],
         ),
-        SizedBox(height: 60),
+        const SizedBox(height: 60),
         Image.asset(
           'assets/images/design-1.png',
-          // fit: BoxFit.cover,
           height: (isMonitor) ? screenSize.height * 0.7 : screenSize.height * 0.9,
-          // width: screenSize.width,
         ),
       ],
     );
@@ -137,7 +129,7 @@ class LandingPage extends ConsumerWidget {
               height: 45,
             ),
             onTap: () {
-              launchURL('https://apple.co/3zMRxsu');
+              launchURL(iOSInstallURL);
             },
           ),
         ),
@@ -147,9 +139,7 @@ class LandingPage extends ConsumerWidget {
           cursor: SystemMouseCursors.click,
           child: GestureDetector(
             child: Image.asset('assets/images/google-play-badge.png', height: 45),
-            onTap: () {
-              launchURL('https://play.google.com/store/apps/details?id=com.me.trash_out');
-            },
+            onTap: () => launchURL(androidInstallURL),
           ),
         ),
       ],
@@ -159,10 +149,10 @@ class LandingPage extends ConsumerWidget {
   featureSection(context, isMonitor, minMonitorWidth) {
     return Column(
       children: [
-        SizedBox(height: 50),
+        const SizedBox(height: 50),
         Text('主な機能', style: Theme.of(context).textTheme.displaySmall),
-        SizedBox(height: 50),
-        Container(
+        const SizedBox(height: 50),
+        SizedBox(
           width: (isMonitor) ? minMonitorWidth : null,
           child: Wrap(
             alignment: WrapAlignment.spaceBetween,
@@ -184,21 +174,110 @@ class LandingPage extends ConsumerWidget {
     return Container(
       width: (isMonitor) ? 290 : 300,
       height: 175,
-      padding: EdgeInsets.all(5.0),
+      padding: const EdgeInsets.all(5.0),
       child: Card(
         child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Column(
             children: [
               Text(title, style: Theme.of(context).textTheme.titleLarge),
-              SizedBox(height: 5),
-              Divider(),
-              SizedBox(height: 5),
+              const SizedBox(height: 5),
+              const Divider(),
+              const SizedBox(height: 5),
               Text(description),
             ],
           ),
         ),
       ),
     );
+  }
+
+  Widget installSection(context, isMonitor) {
+    return (isMonitor)
+        ? Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              installButton(context, 'iOS'),
+              const SizedBox(width: 20),
+              installButton(context, 'Android'),
+            ],
+          )
+        : Column(
+            children: [
+              installButton(context, 'iOS'),
+              const SizedBox(height: 20),
+              installButton(context, 'Android'),
+            ],
+          );
+  }
+
+  Widget installButton(context, platform) {
+    return ElevatedButton(
+      onPressed: () => launchURL((platform == 'iOS') ? iOSInstallURL : androidInstallURL),
+      child: Container(
+        width: 300,
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text.rich(
+              TextSpan(
+                children: [
+                  WidgetSpan(
+                      child: Icon(
+                    (platform == 'iOS') ? Icons.apple : Icons.android,
+                    color: Colors.black,
+                  )),
+                  TextSpan(text: 'インストール', style: Theme.of(context).textTheme.button!.copyWith(fontSize: 18))
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget bottomSection(context, isMonitor) {
+    return Container(
+      decoration: BoxDecoration(color: Colors.blue),
+      padding: EdgeInsets.only(right: 10),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          const Text('Copyright @ 2022 Daisuke Osanai'),
+          TextButton(
+            child: const Text(
+              'プライバシーポリシー',
+              style: TextStyle(fontSize: 10, color: Colors.white),
+            ),
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => PrivacyPolicyPage()),
+            ),
+          ),
+          TextButton(
+            child: const Text(
+              'お問い合わせ',
+              style: TextStyle(fontSize: 10, color: Colors.white),
+            ),
+            onPressed: () => launchURL(contactUrl),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget bottomTextButton(context, label, onPressed) {
+    return TextButton(
+        child: Text(
+          label,
+          style: TextStyle(
+            fontSize: 10,
+            color: Colors.white,
+          ),
+        ),
+        onPressed: onPressed
+        // onPressed;
+        );
   }
 }
