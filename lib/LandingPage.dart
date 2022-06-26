@@ -266,18 +266,4 @@ class LandingPage extends ConsumerWidget {
       ),
     );
   }
-
-  Widget bottomTextButton(context, label, onPressed) {
-    return TextButton(
-        child: Text(
-          label,
-          style: TextStyle(
-            fontSize: 10,
-            color: Colors.white,
-          ),
-        ),
-        onPressed: onPressed
-        // onPressed;
-        );
-  }
 }
