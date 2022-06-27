@@ -241,7 +241,7 @@ class LandingPage extends ConsumerWidget {
                     color: Colors.white,
                   )),
                   TextSpan(
-                      text: (platform == 'iOS') ? ' Apple Store でインストール' : '  Google Play Store でインストール',
+                      text: (platform == 'iOS') ? ' Apple Store' : '  Google Play Store',
                       style: Theme.of(context).textTheme.button!.copyWith(fontSize: 20, color: Colors.white))
                 ],
               ),

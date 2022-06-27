@@ -9,6 +9,10 @@ const double commonElevation = 2;
 Color? topLeftColor = Colors.lightBlue[600];
 // const Color bottomRightColor = Color(0xFFDEE1E7);
 Color? bottomRightColor = Colors.lightBlue[400];
-LinearGradient commonGradient = LinearGradient(colors: [topLeftColor!, bottomRightColor!]);
+LinearGradient commonGradient = LinearGradient(
+  colors: [topLeftColor!, bottomRightColor!],
+  begin: Alignment.topLeft,
+  end: Alignment.bottomRight,
+);
 
 const double totalPadding = 15;
