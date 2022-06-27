@@ -16,7 +16,7 @@ class LandingPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     Size screenSize = MediaQuery.of(context).size;
-    double minMonitorWidth = 900;
+    double minMonitorWidth = 1000;
     bool isMonitor = (screenSize.width > minMonitorWidth);
 
     return Scaffold(
@@ -28,7 +28,6 @@ class LandingPage extends ConsumerWidget {
             const SizedBox(height: 50),
             featureSection(context, isMonitor, minMonitorWidth),
             const SizedBox(height: 50),
-            // othersSection(context, isMonitor),
             installSection(context, isMonitor),
             const SizedBox(height: 50),
             bottomSection(context, isMonitor),
@@ -74,22 +73,24 @@ class LandingPage extends ConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text('収集ゴミ通知アプリ', style: Theme.of(context).textTheme.displaySmall),
-            Text('TrashOut', style: Theme.of(context).textTheme.displayLarge!.copyWith(fontSize: 90)),
+            SelectableText('収集ゴミ通知アプリ', style: Theme.of(context).textTheme.displaySmall),
+            SelectableText('TrashOut', style: Theme.of(context).textTheme.displayLarge!.copyWith(fontSize: 90)),
             const SizedBox(height: 20),
-            const Text('週や曜日、ゴミの種類を登録することで \n日々の収集ゴミを通知してくれます'),
+            const SelectableText('週や曜日、ゴミの種類を登録することで \n日々の収集ゴミを通知してくれます'),
             const SizedBox(height: 40),
             installBadge(),
           ],
         ),
-        SizedBox(width: (isMonitor) ? 100 : 0),
+        SizedBox(width: 100),
         Image.asset(
-          'assets/images/design-1.png',
-          height: (isMonitor) ? screenSize.height * 0.65 : screenSize.height * 0.9,
+          'assets/images/mock-image.png',
+          height: screenSize.height * 0.9,
         ),
       ],
     );
   }
+
+  // Widget TrashOutwithIcon() {}
 
   Widget mobileTopContent(context, screenSize, isMonitor) {
     return Column(
@@ -99,18 +100,18 @@ class LandingPage extends ConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text('収集ゴミ通知アプリ', style: Theme.of(context).textTheme.displaySmall!.copyWith(fontSize: 20)),
-            Text('TrashOut', style: Theme.of(context).textTheme.displayLarge!.copyWith(fontSize: 75)),
+            SelectableText('収集ゴミ通知アプリ', style: Theme.of(context).textTheme.displaySmall!.copyWith(fontSize: 20)),
+            SelectableText('TrashOut', style: Theme.of(context).textTheme.displayLarge!.copyWith(fontSize: 75)),
             const SizedBox(height: 20),
-            const Text('週や曜日、ゴミの種類を登録することで\n日々の収集ゴミを通知してくれます'),
+            const SelectableText('週や曜日、ゴミの種類を登録することで\n日々の収集ゴミを通知してくれます'),
             const SizedBox(height: 30),
             installBadge(),
           ],
         ),
         const SizedBox(height: 60),
         Image.asset(
-          'assets/images/design-1.png',
-          height: (isMonitor) ? screenSize.height * 0.7 : screenSize.height * 0.9,
+          'assets/images/mock-image.png',
+          height: screenSize.height * 0.7,
         ),
       ],
     );
@@ -124,14 +125,13 @@ class LandingPage extends ConsumerWidget {
           cursor: SystemMouseCursors.click,
           child: GestureDetector(
             child: SvgPicture.asset(
-              'assets/images/black.svg',
+              'assets/images/apple-store-badge.svg',
               semanticsLabel: 'ios',
               height: 45,
             ),
             onTap: () => launchURL(iOSInstallURL),
           ),
         ),
-        // Expanded(child: Container()),
         const SizedBox(width: 10),
         MouseRegion(
           cursor: SystemMouseCursors.click,
@@ -148,40 +148,51 @@ class LandingPage extends ConsumerWidget {
     return Column(
       children: [
         customHeadline(context, '主な機能'),
-        SizedBox(
-          width: (isMonitor) ? minMonitorWidth : null,
-          child: Wrap(
-            alignment: WrapAlignment.spaceBetween,
-            direction: Axis.horizontal,
-            children: [
-              featureContent(context, isMonitor, ' 自動で通知', 'TrashOutなら、収集ゴミの詳細を登録すれば自動で通知してくれます'),
-              // (isMonitor) ? SizedBox(width: 10) : SizedBox(height: 40),
-              featureContent(context, isMonitor, ' 複雑な日程もOK', '第1・第3水曜日, 空き缶、と言った複雑なスケジュール設定も可能です'),
-              // (isMonitor) ? SizedBox(width: 10) : SizedBox(height: 40),
-              featureContent(context, isMonitor, ' ログインの手間なし', 'TrashOutは誰でも使えることを目標にしたので、煩わしい認証手続きの手間はなく、すぐに使えます'),
-            ],
-          ),
-        )
+        const SelectableText('TrashOutは収集ゴミの管理と通知に特化しているため,\n機能はできるだけシンプルにしています。'),
+        SizedBox(height: 30),
+        (isMonitor)
+            ? Container(
+                width: minMonitorWidth,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    featureContent(context, isMonitor, ' 自動で通知', 'TrashOutなら、収集ゴミの詳細を登録すれば自動で通知してくれます'),
+                    featureContent(context, isMonitor, ' 複雑な日程もOK', '第1・第3水曜日, 空き缶、と言った複雑なスケジュール設定も可能です'),
+                    featureContent(context, isMonitor, ' ログインの手間なし', 'TrashOutは誰でも使えることを目標にしたので、煩わしい認証手続きの手間はなく、すぐに使えます'),
+                  ],
+                ),
+              )
+            : Container(
+                width: double.infinity,
+                child: Column(
+                  children: [
+                    featureContent(context, isMonitor, ' 自動で通知', 'TrashOutなら、収集ゴミの詳細を登録すれば自動で通知してくれます'),
+                    featureContent(context, isMonitor, ' 複雑な日程もOK', '第1・第3水曜日, 空き缶、と言った複雑なスケジュール設定も可能です'),
+                    featureContent(context, isMonitor, ' ログインの手間なし', 'TrashOutは誰でも使えることを目標にしたので、煩わしい認証手続きの手間はなく、すぐに使えます'),
+                  ],
+                ),
+              )
       ],
     );
   }
 
   Widget featureContent(context, isMonitor, title, description) {
     return Container(
-      width: (isMonitor) ? 290 : 300,
-      height: 175,
-      padding: const EdgeInsets.all(0.0),
+      height: 235,
+      padding: const EdgeInsets.all(totalPadding),
       child: Card(
         elevation: commonElevation,
-        child: Padding(
+        child: Container(
+          decoration: BoxDecoration(gradient: commonGradient, borderRadius: BorderRadius.circular(10.0)),
+          width: (isMonitor) ? 280 : double.infinity,
           padding: const EdgeInsets.all(20.0),
           child: Column(
             children: [
-              Text(title, style: Theme.of(context).textTheme.titleLarge),
-              const SizedBox(height: 5),
-              const Divider(),
-              const SizedBox(height: 5),
-              Text(description),
+              SelectableText(title, style: Theme.of(context).textTheme.titleLarge!.copyWith(color: Colors.blueGrey[50])),
+              const SizedBox(height: 10),
+              Divider(color: Colors.blueGrey[50]),
+              const SizedBox(height: 20),
+              SelectableText(description, style: TextStyle(color: Colors.blueGrey[50])),
             ],
           ),
         ),
@@ -234,13 +245,15 @@ class LandingPage extends ConsumerWidget {
               TextSpan(
                 children: [
                   WidgetSpan(
-                      child: Icon(
-                    (platform == 'iOS') ? Icons.apple : Icons.android,
-                    color: Colors.white,
-                  )),
+                    child: Icon(
+                      (platform == 'iOS') ? Icons.apple : Icons.android,
+                      color: Colors.blueGrey[50],
+                    ),
+                  ),
                   TextSpan(
-                      text: (platform == 'iOS') ? ' Apple Store' : '  Google Play Store',
-                      style: Theme.of(context).textTheme.button!.copyWith(fontSize: 20, color: Colors.white))
+                    text: (platform == 'iOS') ? ' Apple Store' : '  Google Play Store',
+                    style: Theme.of(context).textTheme.button!.copyWith(fontSize: 20, color: Colors.blueGrey[50]),
+                  )
                 ],
               ),
             ),
@@ -275,17 +288,14 @@ class LandingPage extends ConsumerWidget {
   }
 
   Widget bottomText(text) {
-    return Text(
-      text,
-      style: const TextStyle(fontSize: 10, color: Colors.white),
-    );
+    return SelectableText(text, style: TextStyle(fontSize: 10, color: Colors.blueGrey[50]));
   }
 
   Widget customHeadline(context, title) {
     return Column(
       children: [
         const SizedBox(height: 50),
-        Text(title, style: Theme.of(context).textTheme.displaySmall),
+        SelectableText(title, style: Theme.of(context).textTheme.displaySmall),
         SizedBox(width: 90, child: CoolDivider(gradient: commonGradient)),
         const SizedBox(height: 50),
       ],

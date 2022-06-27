@@ -5,12 +5,18 @@ const String androidInstallURL = 'https://play.google.com/store/apps/details?id=
 const String contactUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSfK3Atlu_Gljy2K4VuSRbNQNXN8oHR3AdywsQjqRYFs8rKOjg/viewform';
 
 const double commonElevation = 2;
-// const Color topLeftColor = Color(0xFF007AFD);
+
 Color? topLeftColor = Colors.blue[600];
-// const Color bottomRightColor = Color(0xFFDEE1E7);
 Color? bottomRightColor = Colors.blue[300];
+
 LinearGradient commonGradient = LinearGradient(
   colors: [topLeftColor!, bottomRightColor!],
+  begin: Alignment.topLeft,
+  end: Alignment.bottomRight,
+);
+
+LinearGradient cardGradient = LinearGradient(
+  colors: [topLeftColor!.withOpacity(0.5), bottomRightColor!.withOpacity(0.5)],
   begin: Alignment.topLeft,
   end: Alignment.bottomRight,
 );
