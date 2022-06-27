@@ -147,16 +147,7 @@ class LandingPage extends ConsumerWidget {
   featureSection(context, isMonitor, minMonitorWidth) {
     return Column(
       children: [
-        const SizedBox(height: 50),
-        Container(
-          child: Column(
-            children: [
-              Text('主な機能', style: Theme.of(context).textTheme.displaySmall),
-              const SizedBox(width: 40, child: Divider()),
-            ],
-          ),
-        ),
-        const SizedBox(height: 50),
+        customHeadline(context, '主な機能'),
         SizedBox(
           width: (isMonitor) ? minMonitorWidth : null,
           child: Wrap(
@@ -201,27 +192,34 @@ class LandingPage extends ConsumerWidget {
   Widget installSection(context, isMonitor) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: totalPadding),
-      child: (isMonitor)
-          ? Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                installButton(context, 'iOS', isMonitor),
-                const SizedBox(width: 20),
-                installButton(context, 'Android', isMonitor),
-              ],
-            )
-          : Column(
-              children: [
-                installButton(context, 'iOS', isMonitor),
-                const SizedBox(height: 20),
-                installButton(context, 'Android', isMonitor),
-              ],
-            ),
+      child: Column(
+        children: [
+          customHeadline(context, 'インストール'),
+          (isMonitor)
+              ? Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    installButton(context, 'iOS', isMonitor),
+                    const SizedBox(width: 20),
+                    installButton(context, 'Android', isMonitor),
+                  ],
+                )
+              : Column(
+                  children: [
+                    installButton(context, 'iOS', isMonitor),
+                    const SizedBox(height: 20),
+                    installButton(context, 'Android', isMonitor),
+                  ],
+                ),
+        ],
+      ),
     );
   }
 
   Widget installButton(context, platform, isMonitor) {
     return MaterialButton(
+      padding: EdgeInsets.zero,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
       onPressed: () => launchURL((platform == 'iOS') ? iOSInstallURL : androidInstallURL),
       child: Ink(
         width: (isMonitor) ? 400 : double.infinity,
@@ -231,7 +229,7 @@ class LandingPage extends ConsumerWidget {
         ),
         child: Center(
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
             child: Text.rich(
               TextSpan(
                 children: [
@@ -280,6 +278,17 @@ class LandingPage extends ConsumerWidget {
     return Text(
       text,
       style: const TextStyle(fontSize: 10, color: Colors.white),
+    );
+  }
+
+  Widget customHeadline(context, title) {
+    return Column(
+      children: [
+        const SizedBox(height: 50),
+        Text(title, style: Theme.of(context).textTheme.displaySmall),
+        SizedBox(width: 90, child: CoolDivider(gradient: commonGradient)),
+        const SizedBox(height: 50),
+      ],
     );
   }
 }

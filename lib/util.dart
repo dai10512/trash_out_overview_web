@@ -6,13 +6,47 @@ const String contactUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSfK3Atlu_Glj
 
 const double commonElevation = 2;
 // const Color topLeftColor = Color(0xFF007AFD);
-Color? topLeftColor = Colors.lightBlue[600];
+Color? topLeftColor = Colors.blue[600];
 // const Color bottomRightColor = Color(0xFFDEE1E7);
-Color? bottomRightColor = Colors.lightBlue[400];
+Color? bottomRightColor = Colors.blue[300];
 LinearGradient commonGradient = LinearGradient(
   colors: [topLeftColor!, bottomRightColor!],
   begin: Alignment.topLeft,
   end: Alignment.bottomRight,
 );
 
-const double totalPadding = 15;
+const double totalPadding = 20;
+
+class CoolDivider extends StatelessWidget {
+  const CoolDivider({
+    Key? key,
+    this.height = 16,
+    this.thickness = 1,
+    this.indent = 0,
+    this.endIndent = 0,
+    required this.gradient,
+  }) : super(key: key);
+
+  final double height;
+  final double thickness;
+  final double indent;
+  final double endIndent;
+  final LinearGradient gradient;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        SizedBox(height: height),
+        Container(
+          height: thickness,
+          margin: EdgeInsetsDirectional.only(
+            start: indent,
+            end: endIndent,
+          ),
+          decoration: BoxDecoration(gradient: commonGradient),
+        ),
+      ],
+    );
+  }
+}
