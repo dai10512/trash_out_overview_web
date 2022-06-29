@@ -243,7 +243,7 @@ class LandingPage extends ConsumerWidget {
               children: [
                 customHeadline(context, 'Install', 'インストール'),
                 SizedBox(height: 20),
-                Text('iOS、Andoroidどちらも対応しています。こちらからインストールください。あああああああああああああああああああああ'),
+                Text('iOS、Andoroidどちらも対応しています。こちらからインストールください。'),
                 SizedBox(height: 30),
                 SizedBox(width: 60),
                 Column(
@@ -336,11 +336,12 @@ class LandingPage extends ConsumerWidget {
           ],
         ),
         SizedBox(
-            width: 60,
-            child: CoolDivider(
-              gradient: commonGradient,
-              thickness: 4,
-            )),
+          width: 60,
+          child: CoolDivider(
+            gradient: commonGradient,
+            thickness: 4,
+          ),
+        ),
       ],
     );
   }
