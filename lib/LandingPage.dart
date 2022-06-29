@@ -207,7 +207,7 @@ class LandingPage extends ConsumerWidget {
 
   Widget featureContent(context, isMonitor, title, description) {
     return SizedBox(
-      height: (isMonitor) ? 170 : null,
+      height: (isMonitor) ? 145 : null,
       child: Card(
         elevation: commonElevation,
         child: Container(
@@ -219,7 +219,7 @@ class LandingPage extends ConsumerWidget {
           child: Column(
             children: [
               Container(
-                padding: EdgeInsets.all(15),
+                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
                 width: double.infinity,
                 decoration: BoxDecoration(
                   gradient: commonGradient,
@@ -227,9 +227,9 @@ class LandingPage extends ConsumerWidget {
                     top: Radius.circular(10),
                   ),
                 ),
-                child: SelectableText(title, style: Theme.of(context).textTheme.titleLarge!.copyWith(color: cardTextColor)),
+                child: SelectableText(title, style: Theme.of(context).textTheme.titleMedium!.copyWith(color: cardTextColor)),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 10),
               Padding(
                 padding: const EdgeInsets.only(left: 20.0, right: 20, bottom: 20),
                 child: SelectableText(
@@ -265,7 +265,6 @@ class LandingPage extends ConsumerWidget {
                 SizedBox(width: 80),
                 Expanded(
                   child: Column(
-                    // : Column(
                     children: [
                       SizedBox(height: 80),
                       installButton(context, 'iOS', isMonitor),
@@ -346,26 +345,34 @@ class LandingPage extends ConsumerWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
+          SizedBox(height: 10),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              TextButton(
+              InkWell(
                 child: bottomText('プライバシーポリシー'),
-                onPressed: () => Navigator.push(
+                onTap: () => Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => PrivacyPolicyPage()),
                 ),
               ),
-              TextButton(
+              SizedBox(width: 7),
+              InkWell(
                 child: bottomText('お問い合わせ'),
-                onPressed: () => launchURL(contactUrl),
+                onTap: () => launchURL(contactUrl),
               ),
-              TextButton(
+              SizedBox(width: 7),
+              InkWell(
                 child: bottomText('Github'),
-                onPressed: () => launchURL(githubUrl),
+                onTap: () => launchURL('https://docs.flutter.io/flutter/services/UrlLauncher-class.html'),
               ),
+              // TextButton(
+              //   child: bottomText('Github'),
+              //   onPressed: () => launchURL(githubUrl),
+              // ),
             ],
           ),
+          SizedBox(height: 5),
           bottomText('Copyright @ 2022 Daisuke Osanai'),
           SizedBox(height: 20),
         ],
