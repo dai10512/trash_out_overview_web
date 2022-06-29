@@ -16,7 +16,6 @@ class LandingPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     Size screenSize = MediaQuery.of(context).size;
-    double minMonitorWidth = 1000;
     bool isMonitor = (screenSize.width > minMonitorWidth);
 
     return Scaffold(
@@ -25,11 +24,11 @@ class LandingPage extends ConsumerWidget {
         child: Column(
           children: [
             topSection(context, screenSize, isMonitor),
-            const SizedBox(height: 50),
+            const SizedBox(height: 90),
             featureSection(context, isMonitor, minMonitorWidth),
-            const SizedBox(height: 50),
+            const SizedBox(height: 90),
             installSection(context, isMonitor),
-            const SizedBox(height: 50),
+            const SizedBox(height: 90),
             bottomSection(context, isMonitor),
           ],
         ),
@@ -43,7 +42,7 @@ class LandingPage extends ConsumerWidget {
         Image.asset(
           'assets/images/sky-top-image.png',
           fit: BoxFit.cover,
-          height: (isMonitor) ? screenSize.height * 0.9 : screenSize.height * 0.9,
+          height: screenSize.height * 0.9,
           width: screenSize.width,
         ),
         Padding(
@@ -84,7 +83,7 @@ class LandingPage extends ConsumerWidget {
         SizedBox(width: 100),
         Image.asset(
           'assets/images/mock-image.png',
-          height: screenSize.height * 0.9,
+          height: screenSize.height * 0.7,
         ),
       ],
     );
@@ -145,54 +144,61 @@ class LandingPage extends ConsumerWidget {
   }
 
   featureSection(context, isMonitor, minMonitorWidth) {
-    return Column(
-      children: [
-        customHeadline(context, '主な機能'),
-        const SelectableText('TrashOutは収集ゴミの管理と通知に特化しているため,\n機能はできるだけシンプルにしています。'),
-        SizedBox(height: 30),
-        (isMonitor)
-            ? Container(
-                width: minMonitorWidth,
-                child: Row(
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: totalPadding),
+      width: minMonitorWidth,
+      child: Column(
+        crossAxisAlignment: (isMonitor) ? CrossAxisAlignment.start : CrossAxisAlignment.center,
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              customHeadline(context, 'Features', '主な機能'),
+              SizedBox(height: 30),
+              const SelectableText('TrashOutは収集ゴミの管理と通知に特化しているため、機能はできるだけシンプルにしています。'),
+            ],
+          ),
+          SizedBox(height: 30),
+          (isMonitor)
+              ? Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     featureContent(context, isMonitor, ' 自動で通知', 'TrashOutなら、収集ゴミの詳細を登録すれば自動で通知してくれます'),
                     featureContent(context, isMonitor, ' 複雑な日程もOK', '第1・第3水曜日, 空き缶、と言った複雑なスケジュール設定も可能です'),
                     featureContent(context, isMonitor, ' ログインの手間なし', 'TrashOutは誰でも使えることを目標にしたので、煩わしい認証手続きの手間はなく、すぐに使えます'),
                   ],
-                ),
-              )
-            : Container(
-                width: double.infinity,
-                child: Column(
+                )
+              : Column(
                   children: [
                     featureContent(context, isMonitor, ' 自動で通知', 'TrashOutなら、収集ゴミの詳細を登録すれば自動で通知してくれます'),
                     featureContent(context, isMonitor, ' 複雑な日程もOK', '第1・第3水曜日, 空き缶、と言った複雑なスケジュール設定も可能です'),
                     featureContent(context, isMonitor, ' ログインの手間なし', 'TrashOutは誰でも使えることを目標にしたので、煩わしい認証手続きの手間はなく、すぐに使えます'),
                   ],
-                ),
-              )
-      ],
+                )
+        ],
+      ),
     );
   }
 
   Widget featureContent(context, isMonitor, title, description) {
-    return Container(
-      height: 235,
-      padding: const EdgeInsets.all(totalPadding),
+    return SizedBox(
+      height: 200,
       child: Card(
         elevation: commonElevation,
         child: Container(
-          decoration: BoxDecoration(gradient: commonGradient, borderRadius: BorderRadius.circular(10.0)),
+          decoration: BoxDecoration(
+            gradient: cardGradient,
+            borderRadius: BorderRadius.circular(10.0),
+          ),
           width: (isMonitor) ? 280 : double.infinity,
           padding: const EdgeInsets.all(20.0),
           child: Column(
             children: [
-              SelectableText(title, style: Theme.of(context).textTheme.titleLarge!.copyWith(color: Colors.blueGrey[50])),
+              SelectableText(title, style: Theme.of(context).textTheme.titleLarge!.copyWith(color: Colors.blueGrey[600])),
               const SizedBox(height: 10),
-              Divider(color: Colors.blueGrey[50]),
+              Divider(color: Colors.blueGrey[600]),
               const SizedBox(height: 20),
-              SelectableText(description, style: TextStyle(color: Colors.blueGrey[50])),
+              SelectableText(description, style: TextStyle(color: Colors.blueGrey[600])),
             ],
           ),
         ),
@@ -201,29 +207,55 @@ class LandingPage extends ConsumerWidget {
   }
 
   Widget installSection(context, isMonitor) {
-    return Padding(
+    return Container(
       padding: const EdgeInsets.symmetric(horizontal: totalPadding),
-      child: Column(
-        children: [
-          customHeadline(context, 'インストール'),
-          (isMonitor)
-              ? Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+      width: minMonitorWidth,
+      child: (isMonitor)
+          ? Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    installButton(context, 'iOS', isMonitor),
-                    const SizedBox(width: 20),
-                    installButton(context, 'Android', isMonitor),
+                    customHeadline(context, 'Install', 'インストール'),
+                    const SizedBox(height: 20),
+                    Text('インストールはこちらから。'),
                   ],
-                )
-              : Column(
+                ),
+                SizedBox(width: 60),
+                Expanded(
+                  child: Column(
+                    // : Column(
+                    children: [
+                      SizedBox(height: 80),
+                      installButton(context, 'iOS', isMonitor),
+                      const SizedBox(height: 20),
+                      installButton(context, 'Android', isMonitor),
+                    ],
+                  ),
+                ),
+              ],
+            )
+          : Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                customHeadline(context, 'Install', 'インストール'),
+                SizedBox(height: 20),
+                Text('iOS、Andoroidどちらも対応しています。こちらからインストールください。あああああああああああああああああああああ'),
+                SizedBox(height: 30),
+                SizedBox(width: 60),
+                Column(
+                  // : Column(
                   children: [
                     installButton(context, 'iOS', isMonitor),
                     const SizedBox(height: 20),
                     installButton(context, 'Android', isMonitor),
                   ],
                 ),
-        ],
-      ),
+              ],
+            ),
     );
   }
 
@@ -233,7 +265,8 @@ class LandingPage extends ConsumerWidget {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
       onPressed: () => launchURL((platform == 'iOS') ? iOSInstallURL : androidInstallURL),
       child: Ink(
-        width: (isMonitor) ? 400 : double.infinity,
+        // width: (isMonitor) ? 600 : double.infinity,
+        // width: double.infinity,
         decoration: BoxDecoration(
           gradient: commonGradient,
           borderRadius: BorderRadius.circular(30.0),
@@ -291,13 +324,23 @@ class LandingPage extends ConsumerWidget {
     return SelectableText(text, style: TextStyle(fontSize: 10, color: Colors.blueGrey[50]));
   }
 
-  Widget customHeadline(context, title) {
+  Widget customHeadline(context, titleEn, titleJp) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SizedBox(height: 50),
-        SelectableText(title, style: Theme.of(context).textTheme.displaySmall),
-        SizedBox(width: 90, child: CoolDivider(gradient: commonGradient)),
-        const SizedBox(height: 50),
+        Row(
+          children: [
+            SelectableText(titleEn, style: Theme.of(context).textTheme.headlineSmall!.copyWith(fontSize: 40, fontWeight: FontWeight.w600)),
+            SizedBox(width: 8),
+            SelectableText(titleJp, style: Theme.of(context).textTheme.headlineSmall!.copyWith(fontSize: 18, fontWeight: FontWeight.w500)),
+          ],
+        ),
+        SizedBox(
+            width: 60,
+            child: CoolDivider(
+              gradient: commonGradient,
+              thickness: 4,
+            )),
       ],
     );
   }

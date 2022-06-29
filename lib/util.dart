@@ -6,6 +6,8 @@ const String contactUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSfK3Atlu_Glj
 
 const double commonElevation = 2;
 
+double minMonitorWidth = 1000;
+
 Color? topLeftColor = Colors.blue[600];
 Color? bottomRightColor = Colors.blue[300];
 
