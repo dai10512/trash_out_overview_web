@@ -190,29 +190,28 @@ class LandingPage extends ConsumerWidget {
         elevation: commonElevation,
         child: Container(
           decoration: BoxDecoration(
-            gradient: commonGradient,
+            // gradient: commonGradient,
             borderRadius: BorderRadius.circular(10.0),
           ),
           width: (isMonitor) ? 280 : double.infinity,
-          padding: const EdgeInsets.all(20.0),
+          // padding: const EdgeInsets.all(20.0),
           child: Column(
             children: [
-              SelectableText(
-                title,
-                style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                      color: cardTextColor,
-                    ),
-              ),
-              const SizedBox(height: 10),
-              Divider(
-                color: cardTextColor,
+              Container(
+                padding: EdgeInsets.all(15),
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  gradient: commonGradient,
+                  borderRadius: BorderRadius.vertical(
+                    top: Radius.circular(10),
+                  ),
+                ),
+                child: SelectableText(title, style: Theme.of(context).textTheme.titleLarge!.copyWith(color: cardTextColor)),
               ),
               const SizedBox(height: 20),
-              SelectableText(
-                description,
-                style: TextStyle(
-                  color: cardTextColor,
-                ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: SelectableText(description, style: TextStyle(color: Colors.blueGrey)),
               ),
             ],
           ),
