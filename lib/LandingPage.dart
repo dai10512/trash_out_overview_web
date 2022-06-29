@@ -65,6 +65,28 @@ class LandingPage extends ConsumerWidget {
     // }
   }
 
+  Widget customHeadline(context, titleEn, titleJp) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            SelectableText(titleEn, style: Theme.of(context).textTheme.headlineSmall!.copyWith(fontSize: 40, fontWeight: FontWeight.w600)),
+            SizedBox(width: 8),
+            SelectableText(titleJp, style: Theme.of(context).textTheme.headlineSmall!.copyWith(fontSize: 18, fontWeight: FontWeight.w500)),
+          ],
+        ),
+        SizedBox(
+          width: 60,
+          child: CoolDivider(
+            gradient: commonGradient,
+            thickness: 4,
+          ),
+        ),
+      ],
+    );
+  }
+
   Widget monitorTopContent(context, screenSize, isMonitor) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -185,7 +207,7 @@ class LandingPage extends ConsumerWidget {
 
   Widget featureContent(context, isMonitor, title, description) {
     return SizedBox(
-      height: (isMonitor) ? 200 : null,
+      height: (isMonitor) ? 170 : null,
       child: Card(
         elevation: commonElevation,
         child: Container(
@@ -240,7 +262,7 @@ class LandingPage extends ConsumerWidget {
                     Text('インストールはこちらから。'),
                   ],
                 ),
-                SizedBox(width: 60),
+                SizedBox(width: 80),
                 Expanded(
                   child: Column(
                     // : Column(
@@ -342,27 +364,5 @@ class LandingPage extends ConsumerWidget {
 
   Widget bottomText(text) {
     return SelectableText(text, style: TextStyle(fontSize: 10, color: Colors.blueGrey[50]));
-  }
-
-  Widget customHeadline(context, titleEn, titleJp) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          children: [
-            SelectableText(titleEn, style: Theme.of(context).textTheme.headlineSmall!.copyWith(fontSize: 40, fontWeight: FontWeight.w600)),
-            SizedBox(width: 8),
-            SelectableText(titleJp, style: Theme.of(context).textTheme.headlineSmall!.copyWith(fontSize: 18, fontWeight: FontWeight.w500)),
-          ],
-        ),
-        SizedBox(
-          width: 60,
-          child: CoolDivider(
-            gradient: commonGradient,
-            thickness: 4,
-          ),
-        ),
-      ],
-    );
   }
 }
