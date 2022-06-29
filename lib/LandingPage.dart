@@ -185,7 +185,7 @@ class LandingPage extends ConsumerWidget {
 
   Widget featureContent(context, isMonitor, title, description) {
     return SizedBox(
-      height: 200,
+      height: (isMonitor) ? 200 : null,
       child: Card(
         elevation: commonElevation,
         child: Container(
@@ -194,7 +194,6 @@ class LandingPage extends ConsumerWidget {
             borderRadius: BorderRadius.circular(10.0),
           ),
           width: (isMonitor) ? 280 : double.infinity,
-          // padding: const EdgeInsets.all(20.0),
           child: Column(
             children: [
               Container(
@@ -210,8 +209,12 @@ class LandingPage extends ConsumerWidget {
               ),
               const SizedBox(height: 20),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                child: SelectableText(description, style: TextStyle(color: Colors.blueGrey)),
+                padding: const EdgeInsets.only(left: 20.0, right: 20, bottom: 20),
+                child: SelectableText(
+                  description,
+                  style: TextStyle(color: Colors.blueGrey),
+                  textAlign: TextAlign.left,
+                ),
               ),
             ],
           ),
@@ -279,28 +282,32 @@ class LandingPage extends ConsumerWidget {
       padding: EdgeInsets.zero,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
       onPressed: () => launchURL((platform == 'iOS') ? iOSInstallURL : androidInstallURL),
-      child: Ink(
-        decoration: BoxDecoration(
-          gradient: commonGradient,
-          borderRadius: BorderRadius.circular(30.0),
-        ),
-        child: Center(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0),
-            child: Text.rich(
-              TextSpan(
-                children: [
-                  WidgetSpan(
-                    child: Icon(
-                      (platform == 'iOS') ? Icons.apple : Icons.android,
-                      color: Colors.blueGrey[50],
+      child: Card(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
+        elevation: commonElevation,
+        child: Ink(
+          decoration: BoxDecoration(
+            gradient: commonGradient,
+            borderRadius: BorderRadius.circular(30.0),
+          ),
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8.0),
+              child: Text.rich(
+                TextSpan(
+                  children: [
+                    WidgetSpan(
+                      child: Icon(
+                        (platform == 'iOS') ? Icons.apple : Icons.android,
+                        color: Colors.blueGrey[50],
+                      ),
                     ),
-                  ),
-                  TextSpan(
-                    text: (platform == 'iOS') ? ' Apple Store' : '  Google Play Store',
-                    style: Theme.of(context).textTheme.button!.copyWith(fontSize: 20, color: Colors.blueGrey[50]),
-                  )
-                ],
+                    TextSpan(
+                      text: (platform == 'iOS') ? ' Apple Store' : '  Google Play Store',
+                      style: Theme.of(context).textTheme.button!.copyWith(fontSize: 20, color: Colors.blueGrey[50]),
+                    )
+                  ],
+                ),
               ),
             ),
           ),
