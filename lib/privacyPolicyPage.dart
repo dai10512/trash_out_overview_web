@@ -56,7 +56,7 @@ class PrivacyPolicyPage extends StatelessWidget {
               cursor: SystemMouseCursors.click,
               child: GestureDetector(
                 child: SvgPicture.asset(
-                  'assets/images/black.svg',
+                  'assets/images/apple-store^badge.svg',
                   semanticsLabel: 'ios',
                   height: 40,
                 ),

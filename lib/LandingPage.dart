@@ -342,27 +342,38 @@ class LandingPage extends ConsumerWidget {
     return Container(
       decoration: BoxDecoration(gradient: commonGradient),
       padding: EdgeInsets.symmetric(horizontal: totalPadding),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.end,
         children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              TextButton(
+                child: bottomText('プライバシーポリシー'),
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => PrivacyPolicyPage()),
+                ),
+              ),
+              TextButton(
+                child: bottomText('お問い合わせ'),
+                onPressed: () => launchURL(contactUrl),
+              ),
+              TextButton(
+                child: bottomText('Github'),
+                onPressed: () => launchURL(githubUrl),
+              ),
+            ],
+          ),
           bottomText('Copyright @ 2022 Daisuke Osanai'),
-          TextButton(
-            child: bottomText('プライバシーポリシー'),
-            onPressed: () => Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => PrivacyPolicyPage()),
-            ),
-          ),
-          TextButton(
-            child: bottomText('お問い合わせ'),
-            onPressed: () => launchURL(contactUrl),
-          ),
+          SizedBox(height: 20),
         ],
       ),
     );
   }
 
   Widget bottomText(text) {
-    return SelectableText(text, style: TextStyle(fontSize: 10, color: Colors.blueGrey[50]));
+    return Text(text, style: TextStyle(fontSize: 10, color: Colors.blueGrey[50]));
   }
 }
