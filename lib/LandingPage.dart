@@ -4,6 +4,7 @@ import 'dart:isolate';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:trash_out_overview_web/customWidgets.dart';
 import 'package:trash_out_overview_web/privacyPolicyPage.dart';
 import 'package:trash_out_overview_web/util.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -171,7 +172,9 @@ class LandingPage extends ConsumerWidget {
               : Column(
                   children: [
                     featureContent(context, isMonitor, ' 自動で通知', 'TrashOutなら、収集ゴミの詳細を登録すれば自動で通知してくれます'),
+                    SizedBox(height: 30),
                     featureContent(context, isMonitor, ' 複雑な日程もOK', '第1・第3水曜日, 空き缶、と言った複雑なスケジュール設定も可能です'),
+                    SizedBox(height: 30),
                     featureContent(context, isMonitor, ' ログインの手間なし', 'TrashOutは誰でも使えることを目標にしたので、煩わしい認証手続きの手間はなく、すぐに使えます'),
                   ],
                 )
@@ -187,18 +190,30 @@ class LandingPage extends ConsumerWidget {
         elevation: commonElevation,
         child: Container(
           decoration: BoxDecoration(
-            gradient: cardGradient,
+            gradient: commonGradient,
             borderRadius: BorderRadius.circular(10.0),
           ),
           width: (isMonitor) ? 280 : double.infinity,
           padding: const EdgeInsets.all(20.0),
           child: Column(
             children: [
-              SelectableText(title, style: Theme.of(context).textTheme.titleLarge!.copyWith(color: Colors.blueGrey[600])),
+              SelectableText(
+                title,
+                style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                      color: cardTextColor,
+                    ),
+              ),
               const SizedBox(height: 10),
-              Divider(color: Colors.blueGrey[600]),
+              Divider(
+                color: cardTextColor,
+              ),
               const SizedBox(height: 20),
-              SelectableText(description, style: TextStyle(color: Colors.blueGrey[600])),
+              SelectableText(
+                description,
+                style: TextStyle(
+                  color: cardTextColor,
+                ),
+              ),
             ],
           ),
         ),
@@ -208,7 +223,7 @@ class LandingPage extends ConsumerWidget {
 
   Widget installSection(context, isMonitor) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: totalPadding),
+      padding: EdgeInsets.symmetric(horizontal: totalPadding),
       width: minMonitorWidth,
       child: (isMonitor)
           ? Row(
@@ -299,7 +314,7 @@ class LandingPage extends ConsumerWidget {
   Widget bottomSection(context, isMonitor) {
     return Container(
       decoration: BoxDecoration(gradient: commonGradient),
-      padding: const EdgeInsets.symmetric(horizontal: totalPadding),
+      padding: EdgeInsets.symmetric(horizontal: totalPadding),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [

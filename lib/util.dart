@@ -1,16 +1,20 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 
-const String iOSInstallURL = 'https://apple.co/3zMRxsu';
-const String androidInstallURL = 'https://play.google.com/store/apps/details?id=com.me.trash_out';
-const String contactUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSfK3Atlu_Gljy2K4VuSRbNQNXN8oHR3AdywsQjqRYFs8rKOjg/viewform';
 
-const double commonElevation = 2;
+// Url
+String iOSInstallURL = 'https://apple.co/3zMRxsu';
+String androidInstallURL = 'https://play.google.com/store/apps/details?id=com.me.trash_out';
+String contactUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSfK3Atlu_Gljy2K4VuSRbNQNXN8oHR3AdywsQjqRYFs8rKOjg/viewform';
 
-double minMonitorWidth = 1000;
 
+// color
 Color? topLeftColor = Colors.blue[600];
 Color? bottomRightColor = Colors.blue[300];
+Color cardTextColor = Colors.white;
 
+// gradientColor
 LinearGradient commonGradient = LinearGradient(
   colors: [topLeftColor!, bottomRightColor!],
   begin: Alignment.topLeft,
@@ -23,38 +27,10 @@ LinearGradient cardGradient = LinearGradient(
   end: Alignment.bottomRight,
 );
 
-const double totalPadding = 20;
+// others
+double totalPadding = 20;
+double minMonitorWidth = 1000;
+double commonElevation = 2;
 
-class CoolDivider extends StatelessWidget {
-  const CoolDivider({
-    Key? key,
-    this.height = 16,
-    this.thickness = 1,
-    this.indent = 0,
-    this.endIndent = 0,
-    required this.gradient,
-  }) : super(key: key);
 
-  final double height;
-  final double thickness;
-  final double indent;
-  final double endIndent;
-  final LinearGradient gradient;
 
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        SizedBox(height: height),
-        Container(
-          height: thickness,
-          margin: EdgeInsetsDirectional.only(
-            start: indent,
-            end: endIndent,
-          ),
-          decoration: BoxDecoration(gradient: commonGradient),
-        ),
-      ],
-    );
-  }
-}
