@@ -275,12 +275,11 @@ class LandingPage extends ConsumerWidget {
 
   Widget installButton(context, platform, isMonitor) {
     return MaterialButton(
+      elevation: commonElevation,
       padding: EdgeInsets.zero,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
       onPressed: () => launchURL((platform == 'iOS') ? iOSInstallURL : androidInstallURL),
       child: Ink(
-        // width: (isMonitor) ? 600 : double.infinity,
-        // width: double.infinity,
         decoration: BoxDecoration(
           gradient: commonGradient,
           borderRadius: BorderRadius.circular(30.0),

@@ -2,12 +2,10 @@ import 'dart:html';
 
 import 'package:flutter/material.dart';
 
-
 // Url
 String iOSInstallURL = 'https://apple.co/3zMRxsu';
 String androidInstallURL = 'https://play.google.com/store/apps/details?id=com.me.trash_out';
 String contactUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSfK3Atlu_Gljy2K4VuSRbNQNXN8oHR3AdywsQjqRYFs8rKOjg/viewform';
-
 
 // color
 Color? topLeftColor = Colors.blue[600];
@@ -30,7 +28,4 @@ LinearGradient cardGradient = LinearGradient(
 // others
 double totalPadding = 20;
 double minMonitorWidth = 1000;
-double commonElevation = 2;
-
-
-
+double commonElevation = 20;
