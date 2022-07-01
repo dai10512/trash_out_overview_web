@@ -366,10 +366,6 @@ class LandingPage extends ConsumerWidget {
                 child: bottomText('Github'),
                 onTap: () => launchURL('https://docs.flutter.io/flutter/services/UrlLauncher-class.html'),
               ),
-              // TextButton(
-              //   child: bottomText('Github'),
-              //   onPressed: () => launchURL(githubUrl),
-              // ),
             ],
           ),
           SizedBox(height: 5),

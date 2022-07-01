@@ -13,6 +13,7 @@ Color? topLeftColor = Colors.blue[600];
 Color? bottomRightColor = Colors.blue[300];
 Color cardTextColor = Colors.white;
 
+
 // gradientColor
 LinearGradient commonGradient = LinearGradient(
   colors: [topLeftColor!, bottomRightColor!],
@@ -25,6 +26,8 @@ LinearGradient cardGradient = LinearGradient(
   begin: Alignment.topLeft,
   end: Alignment.bottomRight,
 );
+
+
 
 // others
 double totalPadding = 20;
